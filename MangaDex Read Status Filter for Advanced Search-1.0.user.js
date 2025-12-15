@@ -29,66 +29,6 @@
         return excludedPaths.some(path => location.pathname.startsWith(path));
     }
 
-    let lastWasExcluded = false; // tambahkan variabel global
-
-    function handleNavigation() {
-        if (isExcludedPath()) {
-            GM_setValue("lastFilterStatus", "");
-            lastWasExcluded = true;
-            location.reload();
-            return;
-        }
-
-        // jika sebelumnya di excluded lalu sekarang masuk ke /titles
-        if (lastWasExcluded && location.pathname.startsWith("/titles")) {
-            lastWasExcluded = false;
-            location.reload();
-            return;
-        }
-
-        addFilterUI(); // rebuild UI setiap navigasi
-        const filterBox = document.querySelector("#custom-filter-container select");
-        if (filterBox) {
-            observeMangaList(filterBox); // pasang observer baru
-        }
-    }
-
-    // listener navigasi SPA
-    window.addEventListener("popstate", handleNavigation);
-    ["pushState", "replaceState"].forEach(fn => {
-        const orig = history[fn];
-        history[fn] = function(...args) {
-            const ret = orig.apply(this, args);
-            handleNavigation();
-            return ret;
-        };
-    });
-
-    function observeMangaList(filterBox) {
-        const listContainer = document.querySelector("main");
-        if (!listContainer) return;
-
-        const observer = new MutationObserver(() => {
-            const cards = document.querySelectorAll("a[href^='/title/']");
-            if (cards.length > 0) {
-                applyFilterWhenReady(filterBox);
-            }
-        });
-
-        observer.observe(listContainer, { childList: true, subtree: true });
-
-        // fallback polling
-        let attempts = 0;
-        const interval = setInterval(() => {
-            const cards = document.querySelectorAll("a[href^='/title/']");
-            if (cards.length > 0) {
-                clearInterval(interval);
-                applyFilterWhenReady(filterBox);
-            }
-            attempts++;
-            if (attempts >= 20) clearInterval(interval); // stop setelah ~10 detik
-        }, 500);
-    }
     // --- Konfigurasi Auth (default) ---
     let CONFIG = {
         username: GM_getValue("username", ""),
@@ -521,7 +461,6 @@
 
         const lastStatus = GM_getValue("lastFilterStatus", "");
         filterBox.value = lastStatus;
-        observeMangaList(filterBox);
 
         if (lastStatus) {
             // apply langsung
@@ -536,14 +475,6 @@
             setTimeout(() => {
                 applyFilterWhenReady(filterBox);
             }, 5000);
-
-            setTimeout(() => {
-                applyFilterWhenReady(filterBox);
-            }, 7000);
-
-            setTimeout(() => {
-                applyFilterWhenReady(filterBox);
-            }, 10000);
         }
 
         // jika ada status terakhir, jalankan filter otomatis
@@ -708,11 +639,6 @@
     }
 
     (async () => {
-        if (isExcludedPath()) {
-            GM_setValue("lastFilterStatus", "");
-            console.log("Init on excluded page, reset lastFilterStatus to All");
-            return;
-        }
         await login();
         addFilterUI();
     })();
@@ -746,14 +672,33 @@
     }
 
     // Back/Forward
-    // React SPA navigation hooks
-    window.addEventListener("popstate", handleNavigation);
+    window.addEventListener("popstate", () => {
+        if (isExcludedPath()) {
+            GM_setValue("lastFilterStatus", "");
+            location.reload();
+            return;
+        }
+        if (location.pathname.startsWith("/titles")) {
+            handleTitlesPage();
+        }
+    });
 
+    // Override pushState/replaceState untuk deteksi pindah page=2,3,...
     ["pushState", "replaceState"].forEach(fn => {
         const orig = history[fn];
         history[fn] = function(...args) {
             const ret = orig.apply(this, args);
-            handleNavigation();
+
+            if (isExcludedPath()) {
+                // reset filter dan reload sekali
+                GM_setValue("lastFilterStatus", "");
+                location.reload();
+                return ret;
+            }
+
+            if (location.pathname.startsWith("/titles")) {
+                handleTitlesPage();
+            }
             return ret;
         };
     });
