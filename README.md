@@ -74,7 +74,7 @@ Script ini memudahkan pengguna untuk menyaring manga sesuai status yang tersimpa
 - Dropdown **Read Status** muncul di samping tombol Reset.
 - Tombol **Set Config** membuka popup konfigurasi.
 - Tombol **Apply** menyaring manga sesuai status.
-
+<img width="1048" height="235" alt="image" src="https://github.com/user-attachments/assets/db44ae21-a10c-4c1c-89dd-bd5dff9ada55" />
 ---
 
 ## 👤 Credit
