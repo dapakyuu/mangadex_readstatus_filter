@@ -1,8 +1,8 @@
 # MangaDex Read Status Filter for Advanced Search
 
-![Tampermonkey](https://img.shields.io/badge/Tampermonkey-Userscript-blue?logo=tampermonkey)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript)
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+[![Tampermonkey](https://img.shields.io/badge/Tampermonkey-Userscript-blue?logo=tampermonkey)](https://www.tampermonkey.net/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Tampermonkey userscript untuk menambahkan **filter berdasarkan status baca** (Reading, Completed, Dropped, dll.) ke halaman **Advanced Search MangaDex**.  
 Script ini memudahkan pengguna untuk menyaring manga sesuai status yang tersimpan di akun MangaDex mereka.
