@@ -1,5 +1,9 @@
 # MangaDex Read Status Filter for Advanced Search
 
+![Tampermonkey](https://img.shields.io/badge/Tampermonkey-Userscript-blue?logo=tampermonkey)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
 Tampermonkey userscript untuk menambahkan **filter berdasarkan status baca** (Reading, Completed, Dropped, dll.) ke halaman **Advanced Search MangaDex**.  
 Script ini memudahkan pengguna untuk menyaring manga sesuai status yang tersimpan di akun MangaDex mereka.
 
@@ -72,14 +76,16 @@ Script ini memudahkan pengguna untuk menyaring manga sesuai status yang tersimpa
 
 ## 📖 Contoh Tampilan
 - Dropdown **Read Status** muncul di samping tombol Reset.
+  <img width="1048" height="235" alt="image" src="https://github.com/user-attachments/assets/db44ae21-a10c-4c1c-89dd-bd5dff9ada55" />
 - Tombol **Set Config** membuka popup konfigurasi.
+
+  <img width="464" height="498" alt="image" src="https://github.com/user-attachments/assets/70dc70da-ffd0-43a8-97dc-23b5fd21532c" />
 - Tombol **Apply** menyaring manga sesuai status.
-<img width="1048" height="235" alt="image" src="https://github.com/user-attachments/assets/db44ae21-a10c-4c1c-89dd-bd5dff9ada55" />
 ---
 
 ## 👤 Credit
-- Author: **dapakyuu (Daffa Al‑Fathir Ismail)**
-- GitHub: [https://github.com/username/repo-name](https://github.com/username/repo-name)
+- Author: **dapakyuu**
+- GitHub: [https://github.com/dapakyuu/mangadex_readstatus_filter](https://github.com/dapakyuu/mangadex_readstatus_filter)
 
 ---
 
