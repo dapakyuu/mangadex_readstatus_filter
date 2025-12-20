@@ -6,6 +6,7 @@
 // @author       dapakyuu
 // @homepageURL  https://github.com/dapakyuu/mangadex_readstatus_filter
 // @match        https://mangadex.org/titles*
+// @icon         https://mangadex.org/favicon.ico
 // @exclude      https://mangadex.org/titles/feed*
 // @exclude      https://mangadex.org/titles/recent*
 // @exclude      https://mangadex.org/titles/latest*
@@ -13,6 +14,8 @@
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @downloadURL https://update.greasyfork.org/scripts/559036/MangaDex%20Read%20Status%20Filter%20for%20Advanced%20Search.user.js
+// @updateURL https://update.greasyfork.org/scripts/559036/MangaDex%20Read%20Status%20Filter%20for%20Advanced%20Search.meta.js
 // ==/UserScript==
 
 (function() {
